@@ -1,5 +1,7 @@
 # COALA SwarmOps
 
+Operational swarm orchestration platform evolved from real-world DevOps and engineering workflows.
+
 Self-hosted engineering swarm orchestration platform focused on low-cost intelligent execution, modular agent collaboration, DevOps automation, and adaptive multi-tier reasoning.
 
 > Smarter agents. Lower costs. Better systems.
