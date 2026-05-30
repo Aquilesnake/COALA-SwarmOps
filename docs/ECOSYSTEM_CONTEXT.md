@@ -1,32 +1,32 @@
-# Ecosistema COALA — Mapa de Repositorios y Relaciones
+# Ecosistema COALA — Conceptos de Arquitectura Distribuida
 
 ## Visión General
 
-COALA-SwarmOps es la **cabeza cognitiva** del ecosistema. No es un proyecto aislado: está conectado orgánicamente con tres repositorios satélite que forman la base de datos, el comercio y la logística del sistema.
+COALA SwarmOps está diseñado para operar como la **capa cognitiva** de tu ecosistema de desarrollo. No es un proyecto aislado: se conecta orgánicamente con tus repositorios existentes para orquestar trabajo, validar calidad y mantener contexto entre proyectos.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                      COALA-SwarmOps                                 │
-│              [Cabeza Cognitiva · Orquestador]                       │
+│                      COALA SwarmOps                                 │
+│              [Capa Cognitiva · Orquestador]                         │
 │                                                                     │
 │   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
-│   │   Hermes    │  │   Nexus     │  │  Pipeline   │              │
-│   │  Orquesta   │  │  Costos/    │  │   SDD v6.7  │              │
-│   │  Agentes    │  │  Trazabil.  │  │  9 Fases    │              │
+│   │   Planner   │  │  Knowledge  │  │  Pipeline   │              │
+│   │  Estratégico│  │  /Costos    │  │   SDD 9 Fases│             │
 │   └─────────────┘  └─────────────┘  └─────────────┘              │
 └──────────┬─────────────────┬─────────────────┬────────────────────┘
            │                 │                 │
            ▼                 ▼                 ▼
 ┌──────────────────┐ ┌──────────────────┐ ┌──────────────────┐
-│    tancerca      │ │  fuente-de-datos │ │  imp.bodegamk    │
+│   Repo A         │ │   Repo B         │ │   Repo C         │
 │   [Ecommerce]    │ │   [Conocimiento] │ │   [Logística]    │
-│  Medusa v2       │ │  RAG · Crawl4AI  │ │  Bodega · Stock  │
-│  Dropshipping    │ │  Catálogos       │ │  Inventario      │
-│  Checkout        │ │  Proveedores     │ │  Fulfillment     │
+│  Framework X     │ │  RAG · Crawl     │ │  Inventario      │
+│  Frontend        │ │  Catálogos       │ │  Fulfillment     │
 └──────────────────┘ └──────────────────┘ └──────────────────┘
 ```
 
-## Repositorios
+> **Nota:** Este diagrama es conceptual. COALA se adapta a tus repositorios existentes — no requiere una arquitectura específica.
+
+## Repositorios en el Ecosistema
 
 ### 1. COALA-SwarmOps (Este repositorio)
 **Rol:** Orquestador cognitivo y pipeline de desarrollo autónomo.
@@ -37,147 +37,103 @@ COALA-SwarmOps es la **cabeza cognitiva** del ecosistema. No es un proyecto aisl
 - Implementar features con TDD
 - Auditar seguridad
 - Controlar costos por feature
-- Coordinar agentes (actual) / Coordinar via Hermes (futuro)
+- Coordinar agentes (actual) / Coordinar via capa cognitiva (futuro)
 
 **Puntos de entrada:**
-- `docs/INSTALL.md` — Instalación del swarm
-- `docs/USER_GUIDE.md` — Manual para clientes
-- `docs/custom_modes/custom_modes_v6.7.yaml` — Definición de 21 workers
+- [`docs/INSTALL.md`](INSTALL.md) — Instalación del swarm
+- [`docs/USER_GUIDE.md`](USER_GUIDE.md) — Manual para usuarios
+- [`docs/custom_modes/custom_modes_v6.0.yaml`](custom_modes/custom_modes_v6.0.yaml) — Definición de agentes base
 
 ---
 
-### 2. tancerca
-**Rol:** Plataforma de ecommerce dropshipping.
+### 2. Tus Repositorios de Dominio
+**Rol:** Código de negocio, APIs, storefronts, bases de datos.
 
-**Ruta local:** `D:\repositorios\tancerca`
-
-**Stack técnico:**
-- MedusaJS v2 (backend ecommerce)
-- Next.js Storefront
-- PostgreSQL + Redis
-- Docker Compose
+**Ejemplos de stacks soportados:**
+- Ecommerce: MedusaJS, Shopify APIs, WooCommerce
+- Frontend: Next.js, React, Vue, Angular
+- Backend: Node.js, Python, Go, Java
+- Datos: PostgreSQL, MongoDB, Redis, vector databases
 
 **Relación con COALA:**
-- El worker `rag-pro` consume documentación de Medusa v2 desde `tancerca/docs/`
-- El swarm implementa features directamente en este repo (checkout, catálogos, SEO)
-- Los catálogos de proveedores se indexan desde `tancerca/fuente-de-datos/proveedores/`
+- El swarm implementa features directamente en tus repos vía Git
+- Los catálogos de documentación se indexan para consulta de agentes
+- El contexto histórico se mantiene en `docs/swarm-context.md`
 
 **Puntos de entrada:**
-- `backend/` — API Medusa v2
-- `storefront/` — Frontend Next.js
-- `docs/` — Documentación de dominio
+- Cualquier repo con Git
+- APIs REST/GraphQL documentadas
+- Docker Compose para entornos locales
 
 ---
 
-### 3. fuente-de-datos
-**Rol:** Motor de conocimiento y RAG (Retrieval Augmented Generation).
-
-**Ruta local:** `D:\repositorios\fuente de datos`
-
-**Responsabilidades:**
-- Crawl4AI: indexación de sitios de proveedores
-- MCP Server: conectores de datos
-- Novel Core: procesamiento de texto y embeddings
-- Open WebSearch: búsqueda web enriquecida
-
-**Relación con COALA:**
-- `rag-pro` utiliza este repo como fuente de verdad para respuestas de dominio
-- `context-guardian` actualiza `swarm-context.md` con aprendizajes de este repo
-- Los catálogos indexados alimentan decisiones de compra en `tancerca`
-
-**Puntos de entrada:**
-- `mcp-server/` — Servidores de contexto
-- `novel-core/` — Embeddings y vectorización
-- `scripts/` — Automatización de crawling
-
----
-
-### 4. imp.bodegamk
-**Rol:** Sistema de gestión de bodega, stock e inventario.
-
-**Ruta local:** `D:\repositorios\imp.bodegamk`
-
-**Responsabilidades:**
-- Control de inventario físico
-- Gestión de SKUs y almacenes
-- Fulfillment y despacho
-- Integración con ecommerce
-
-**Relación con COALA:**
-- El swarm sincroniza stock entre `tancerca` (ventas online) e `imp.bodegamk` (bodega física)
-- `devops-inspector` monitorea contenedores Docker de este repo
-- `senior` genera scripts de integración de APIs entre ambos sistemas
-
-**Puntos de entrada:**
-- `backend/` — API de inventario
-- `apps/` — Aplicaciones de gestión
-- `docker/` — Compose de servicios
-
-## Flujo de Datos entre Repos
+## Flujo de Datos Conceptual
 
 ```mermaid
 graph LR
     subgraph COALA
-        ENR[us-enricher]
-        IMP[code-expert]
-        RAG[rag-pro]
-        CTX[context-guardian]
+        ENR[Analista de Reqs]
+        IMP[Implementador]
+        RAG[Motor RAG]
+        CTX[Guardián de Contexto]
     end
 
-    subgraph TANCERCA
-        MED[Medusa v2]
-        STO[Storefront]
+    subgraph PROYECTO_A
+        API[API Backend]
+        STO[Frontend]
         CAT[Catálogos]
     end
 
-    subgraph FUENTE
-        CRAW[Crawl4AI]
-        MCP[MCP Server]
+    subgraph PROYECTO_B
+        CRAW[Indexador]
+        MCP[Servidor Contexto]
         VECT[Vector DB]
     end
 
-    subgraph BODEGA
+    subgraph PROYECTO_C
         INV[Inventario]
-        FUL[Fulfillment]
-        API[API Stock]
+        FUL[Cumplimiento]
+        API2[API Stock]
     end
 
-    ENR -->|feature request| MED
+    ENR -->|feature request| API
     IMP -->|implementa| STO
     RAG -->|consulta| VECT
     CRAW -->|indexa| VECT
     MCP -->|contexto| RAG
-    MED -->|ordenes| API
-    API -->|stock actual| MED
-    CTX -->|aprendizaje| FUENTE
-    CTX -->|aprendizaje| TANCERCA
-    CTX -->|aprendizaje| BODEGA
+    API -->|ordenes| API2
+    API2 -->|stock actual| API
+    CTX -->|aprendizaje| PROYECTO_A
+    CTX -->|aprendizaje| PROYECTO_B
+    CTX -->|aprendizaje| PROYECTO_C
 ```
+
+> Los nombres de proyectos y agentes son genéricos. COALA se adapta a tu arquitectura real.
 
 ## Fuente de Verdad por Dominio
 
-| Dominio | Fuente principal | Repo | Worker que consume |
+| Dominio | Fuente principal | Tipo | Agente que consume |
 |---------|-----------------|------|-------------------|
-| Ecommerce | Medusa v2 docs | tancerca/docs/ | rag-pro |
-| Catálogos | Proveedores indexados | fuente-de-datos/ | rag-pro |
-| Inventario | API de stock | imp.bodegamk/backend/ | senior, devops |
-| Arquitectura | custom_modes.yaml | COALA-SwarmOps/ | micromanager |
-| Costos | COST_REPORTS/ | COALA-SwarmOps/ | strategic-planner |
-| Contexto histórico | swarm-context.md | COALA-SwarmOps/ | context-guardian |
+| Ecommerce | Documentación de framework | docs/ | Motor de consulta |
+| Catálogos | Datos indexados | knowledge base/ | Motor de consulta |
+| Inventario | API de stock | backend/ | Implementador, DevOps |
+| Arquitectura | custom_modes.yaml | COALA-SwarmOps/ | Coordinador |
+| Costos | COST_REPORTS/ | COALA-SwarmOps/ | Planificador |
+| Contexto histórico | swarm-context.md | COALA-SwarmOps/ | Guardián de contexto |
 
 ## Reglas de Contribución Cruzada
 
-1. **Nunca editar directamente `tancerca` sin pasar por el pipeline SDD**
+1. **Nunca editar directamente repos de producción sin pasar por el pipeline SDD**
    - Siempre iniciar con `/enrich_us` en COALA
    - El swarm genera branch, tests, implementación y PR
 
-2. **Actualizar `fuente-de-datos` cuando cambia un catálogo**
-   - Crawl4AI re-indexa automáticamente (si está configurado)
-   - `rag-pro` debe verificar que el vector DB esté actualizado
+2. **Actualizar fuentes de conocimiento cuando cambia documentación**
+   - Re-indexar automáticamente (si está configurado)
+   - Verificar que la base de vectores esté actualizada
 
-3. **Sincronizar stock entre `tancerca` y `imp.bodegamk`**
+3. **Sincronizar estado entre servicios conectados**
    - Usar webhooks o polling según configuración
-   - `devops-inspector` verifica que ambos servicios estén healthy
+   - Verificar que todos los servicios estén healthy
 
 4. **Documentar aprendizajes en `swarm-context.md`**
    - Al finalizar cada feature (FASE 9)
@@ -187,24 +143,16 @@ graph LR
 
 ```bash
 # COALA
-export COALA_HOME="D:\repositorios\COALA-SwarmOps"
-export COALA_CUSTOM_MODES="$COALA_HOME\docs\custom_modes"
+export COALA_HOME="/ruta/a/COALA-SwarmOps"
+export COALA_CUSTOM_MODES="$COALA_HOME/docs/custom_modes"
 
-# TANCERCA
-export TANCERCA_HOME="D:\repositorios\tancerca"
-export TANCERCA_BACKEND="$TANCERCA_HOME\backend"
-export TANCERCA_STOREFRONT="$TANCERCA_HOME\storefront"
-
-# FUENTE DE DATOS
-export FUENTE_HOME="D:\repositorios\fuente de datos"
-export MCP_SERVER="$FUENTE_HOME\mcp-server"
-
-# BODEGA
-export BODEGA_HOME="D:\repositorios\imp.bodegamk"
-export BODEGA_API="$BODEGA_HOME\backend"
+# TUS PROYECTOS (ejemplo)
+export PROYECTO_A_HOME="/ruta/a/tu-proyecto"
+export PROYECTO_A_BACKEND="$PROYECTO_A_HOME/backend"
+export PROYECTO_A_FRONTEND="$PROYECTO_A_HOME/frontend"
 ```
 
-## Espacio para Fuentes Relacionadas (Agregar aquí)
+## Espacio para Fuentes Relacionadas
 
 > **Instrucción:** Cada vez que se integre un nuevo repositorio, servicio externo o fuente de datos, documentar aquí con el formato:
 
@@ -213,18 +161,11 @@ export BODEGA_API="$BODEGA_HOME\backend"
 **Rol:** Descripción breve
 **Ruta/URL:** Ruta local o endpoint
 **Relación con COALA:** Cómo se conecta
-**Worker responsable:** Quién consume esta fuente
+**Responsable:** Quién consume esta fuente
 **Estado:** 🟢 Activo / 🟡 En desarrollo / 🔴 Inactivo
 ```
 
-### Ejemplo: API de Pagos (Stripe)
-**Rol:** Procesamiento de pagos para tancerca
-**URL:** https://api.stripe.com/v1
-**Relación con COALA:** El swarm implementa integraciones de checkout
-**Worker responsable:** senior, code-expert
-**Estado:** 🟡 En desarrollo
-
 ---
 
-*Última actualización: 2026-05-27*
-*Mantenedor: COALA-SwarmOps / context-guardian*
+*Última actualización: 2026-05-30*
+*Mantenedor: COALA SwarmOps*

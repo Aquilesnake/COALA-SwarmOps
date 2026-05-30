@@ -8,16 +8,16 @@
 
 | Feature | v6.0 |
 |---------|------|
-| **Workers** | 14 (8 T1 + 3 T0 local + 3 T3 planners) |
-| **Pipeline** | Basic SDD: us-enricher → fastforward-writer → micromanager |
+| **Agents** | Core starter team (T1 executors + T0 local + T3 planners) |
+| **Pipeline** | Basic SDD: Requirements → Specification → Coordination |
 | **Tiers** | T0 (local $0) + T1 (cloud) + T3 (strategic) |
 | **Gates** | None — direct execution |
 | **Anti-duplicate** | No |
-| **Human gate** | No (us-enricher can skip) |
+| **Human gate** | No |
 | **CoALA memory** | No |
 | **Agnostic CLI** | No |
 | **Circuit breaker** | No |
-| **Score** | ~60/100 |
+| **Score** | Starter baseline |
 
 ### Perfect For
 - Trying the swarm concept
@@ -29,15 +29,15 @@
 
 ## Premium Tiers
 
-Upgrade to unlock production-grade swarms with more workers, validation gates, cost optimization, and advanced reasoning.
+Upgrade to unlock production-grade swarms with more agents, validation gates, cost optimization, and advanced reasoning.
 
-| Tier | Version | Price | Workers | Highlights |
-|------|---------|-------|---------|------------|
-| 🥉 **Starter** | v6.1 | $7.99 one-time | 18 | Anti-duplicate, human gate, T2 basic escalation |
-| 🥈 **Production** | v6.2 | $19.99 one-time | 24+ | 3 validation gates, CoALA memory, full T2 escalation. **+ POS/Inventory docker-compose template** |
-| 🥇 **Docker & Ecommerce** | v6.3 | $14.99 one-time | 25+ | CoALA loop, Agnostic CLI, RAG expanded. **+ Ecommerce docker-compose template** |
-| 💰 **Pro** | v6.5 | $49/mo | 18 | T0 local agents ($0 cost), circuit breaker, error learning, monthly updates |
-| 🏢 **Enterprise** | v6.7 | $299/mo | 21 | DeepSeek+Kimi tiered, T0.5 Flash agents, Kimi K2.5 validators, all starter templates, priority support, roadmap voting |
+| Tier | Version | Price | Agents | Highlights |
+|------|---------|-------|--------|------------|
+| 🥉 **Starter** | v6.1 | $7.99 one-time | Expanded | Anti-duplicate, human gate, T2 basic escalation |
+| 🥈 **Production** | v6.2 | $19.99 one-time | Full team | 3 validation gates, CoALA memory, full T2 escalation. **+ POS/Inventory docker-compose template** |
+| 🥇 **Docker & Ecommerce** | v6.3 | $14.99 one-time | Full team + | CoALA loop, Agnostic CLI, RAG expanded. **+ Ecommerce docker-compose template** |
+| 💰 **Pro** | v6.5 | $49/mo | Expanded | T0 local agents ($0 cost), circuit breaker, error learning, monthly updates |
+| 🏢 **Enterprise** | v6.7 | $299/mo | Maximum | Tiered cloud agents, enhanced local agents, full validation gates, all starter templates, priority support, roadmap voting |
 
 ### How to Upgrade
 
@@ -55,14 +55,14 @@ After purchase, you'll receive:
 
 | Dimension | v6.0 (Free) | v6.2 (Production) | v6.7 (Enterprise) |
 |-----------|-------------|-------------------|-------------------|
-| Architecture T0-T3 | 6/15 | 12/15 | 14/15 |
-| Error Handling | 4/15 | 11/15 | 13/15 |
-| Role Coverage | 8/15 | 12/15 | 14/15 |
-| Validation Gates | 2/10 | 8/10 | 9/10 |
-| Security | 5/10 | 8/10 | 8/10 |
-| Cost Scalability | 3/10 | 6/10 | 7/10 |
-| TDD & Quality | 3/5 | 4/5 | 5/5 |
-| **Total** | **~33** | **82** | **~92** |
+| Architecture T0-T3 | Baseline | Good | Excellent |
+| Error Handling | Baseline | Good | Excellent |
+| Role Coverage | Baseline | Good | Excellent |
+| Validation Gates | Minimal | Good | Excellent |
+| Security | Baseline | Good | Excellent |
+| Cost Scalability | Baseline | Good | Excellent |
+| TDD & Quality | Baseline | Good | Excellent |
+| **Total** | **~33** | **~82** | **~92** |
 
 ---
 
@@ -100,5 +100,5 @@ A: Enterprise tier includes roadmap voting — if enough clients request a stack
 
 ---
 
-*Last updated: 2026-05-29*
+*Last updated: 2026-05-30*
 *Maintained by: COALA SwarmOps*

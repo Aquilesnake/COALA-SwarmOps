@@ -21,7 +21,7 @@
 
 ## The idea in one sentence
 
-> **COALA SwarmOps is like having a team of 14+ "virtual experts" inside your computer, each specialized in something different, working together to build software, fix bugs, and automate tasks.**
+> **COALA SwarmOps is like having a team of specialized "virtual experts" inside your computer, each with a different skill, working together to build software, fix bugs, and automate tasks.**
 
 ---
 
@@ -35,7 +35,7 @@ Imagine you want to open a restaurant. Normally you would need to hire:
 | 🍳 Line cooks | **Executors (T0)** | Cook the dishes. Fast, local, free |
 | 👁️ Quality supervisor | **Validator (T2)** | Checks the dish is good before serving |
 | 🔍 Health inspector | **Security Auditor** | Makes sure everything is safe |
-| 📋 Maître d' | **MicroManager** | Coordinates who does what and when |
+| 📋 Maître d' | **Coordinator** | Orchestrates who does what and when |
 
 **COALA does exactly that, but for software.**
 
@@ -66,7 +66,7 @@ flowchart TB
     end
 
     subgraph Step3["3️⃣ The swarm works alone"]
-        S3A[14 agents collaborate] --> S3B[You get tested code]
+        S3A[Multiple agents collaborate] --> S3B[You get tested code]
     end
 
     Step1 --> Step2 --> Step3
@@ -83,7 +83,7 @@ flowchart TB
 | **Complex feature** (e.g. new module) | ~$2.00 - $8.00 | When the local team can't handle it alone |
 | **Comparison:** Hiring a developer | $1,500 - $5,000/mo | — |
 
-> 💡 **65% of the work is done for free** with local agents (T0).
+> 💡 **Most of the work is done for free** with local agents (T0).
 
 ---
 
@@ -120,9 +120,9 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Step 2: Download local models (free)
 
 ```bash
-ollama pull ejecutor-qwen2.5:latest   # Command executor
-ollama pull qwen3.5:9b-opt            # Fast validator
-ollama pull granite3.2:8b             # Context explorer
+ollama pull qwen2.5:latest   # Local executor
+ollama pull qwen2.5:7b       # Fast validator
+ollama pull granite3.2:8b    # Context explorer
 ```
 
 ### Step 3: Install RooCode in VS Code
@@ -156,9 +156,9 @@ cp docs/custom_modes/custom_modes_v6.0.yaml ~/.vscode/extensions/roo-code/.roo/c
 ```mermaid
 flowchart TB
     subgraph TIER0["⚡ TIER 0 — Local ($0)"]
-        T0A["ejecutor-qwen2.5<br/>Fast commands"]
-        T0B["qwen3.5:9b-opt<br/>Validation"]
-        T0C["granite3.2:8b<br/>Exploration"]
+        T0A["Local Executor<br/>Fast commands"]
+        T0B["Fast Validator<br/>Quick checks"]
+        T0C["Context Explorer<br/>Code search"]
     end
 
     subgraph TIER1["🔹 TIER 1 — Cloud Economy (~$0.14/1M tok)"]
@@ -172,13 +172,13 @@ flowchart TB
 
     subgraph TIER3["🔶 TIER 3 — Strategic (~$0.50/1M tok)"]
         T3A["kimi-k2.6<br/>Planning"]
-        T3B["strategic-planner<br/>Architecture"]
+        T3B["Strategic Planner<br/>Architecture"]
     end
 
     subgraph GATES["🛡️ Validation Gates"]
-        GATE1["spec-validator<br/>Before code"]
-        GATE2["test-engineer<br/>Tests before merge"]
-        GATE3["code-reviewer<br/>Final review"]
+        GATE1["Quality Gate 1<br/>Before code"]
+        GATE2["Quality Gate 2<br/>Tests before merge"]
+        GATE3["Quality Gate 3<br/>Final review"]
     end
 
     USER["🧑 User"] --> REQUEST["/enrich_us 'feature'"]
@@ -202,17 +202,17 @@ flowchart TB
 
 | Component | Responsibility | Tier |
 |---|---|---|
-| **us-enricher** | Transforms vague user stories into exhaustive specifications | T2 |
-| **fastforward-writer** | Generates the 4 documents of the artifact folder | T3 |
-| **micromanager** | Executes execution_plan.yaml phase by phase | T3 |
-| **spec-validator** | Validates the spec is complete before code | T2 |
-| **test-engineer** | Validates tests meet TDD before implementation | T2 |
-| **code-reviewer** | Reviews quality, security and patterns before merge | T2 |
-| **security-auditor** | Security audit before deploy | T2 |
-| **evidence-checker** | Verifies every technical claim has real evidence | T2 |
-| **ejecutor-qwen** (T0) | Atomic cmd.exe command executor | T0 |
-| **qwen-fast-checker** (T0) | Fast syntax and linting validator | T0 |
-| **granite-context-scout** (T0) | Local codebase search and exploration | T0 |
+| **Requirement Analyst** | Transforms vague user stories into detailed specifications | T2 |
+| **Specification Writer** | Generates technical design documents and task breakdowns | T3 |
+| **Task Coordinator** | Manages execution phases and delegates to appropriate agents | T3 |
+| **Quality Validator** | Validates specifications are complete before implementation | T2 |
+| **Test Validator** | Ensures tests meet quality standards before code merge | T2 |
+| **Code Reviewer** | Reviews quality, security and patterns before production | T2 |
+| **Security Auditor** | Performs security audit before deployment | T2 |
+| **Evidence Verifier** | Verifies every technical claim has supporting evidence | T2 |
+| **Local Executor** (T0) | Runs atomic commands on your local machine | T0 |
+| **Syntax Checker** (T0) | Fast syntax and lint validation | T0 |
+| **Code Explorer** (T0) | Local codebase search and exploration | T0 |
 
 ---
 
@@ -220,15 +220,15 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    A["📝 PHASE 0<br/>Enrich US"] --> B["📐 PHASE 1<br/>Plan"]
-    B --> C["⚡ PHASE 2<br/>FastForward"]
-    C --> D["🛡️ PHASE 3<br/>Validate Spec"]
-    D --> E["💻 PHASE 4<br/>Code"]
-    E --> F["🔍 PHASE 5<br/>Review Code"]
-    F --> G["🧪 PHASE 6<br/>Test"]
-    G --> H["🔐 PHASE 7<br/>Security Audit"]
-    H --> I["🏁 PHASE 8<br/>Commit + PR"]
-    I --> J["🧠 PHASE 9<br/>Context Guardian"]
+    A["📝 Phase 0<br/>Requirement Enrichment"] --> B["📐 Phase 1<br/>Planning"]
+    B --> C["⚡ Phase 2<br/>Specification"]
+    C --> D["🛡️ Phase 3<br/>Spec Validation"]
+    D --> E["💻 Phase 4<br/>Implementation"]
+    E --> F["🔍 Phase 5<br/>Code Review"]
+    F --> G["🧪 Phase 6<br/>Testing"]
+    G --> H["🔐 Phase 7<br/>Security Audit"]
+    H --> I["🏁 Phase 8<br/>Delivery"]
+    I --> J["🧠 Phase 9<br/>Knowledge Capture"]
 ```
 
 ---
@@ -239,8 +239,8 @@ flowchart LR
 
 | Model | VRAM | Use |
 |---|---|---|
-| `ejecutor-qwen2.5:latest` | ~12 GB | Command execution |
-| `qwen3.5:9b-opt` | ~6 GB | Fast validation |
+| `qwen2.5:latest` | ~12 GB | Command execution |
+| `qwen2.5:7b` | ~6 GB | Fast validation |
 | `granite3.2:8b` | ~6 GB | Code exploration |
 
 ### Cloud (Direct API)
@@ -252,24 +252,18 @@ flowchart LR
 | Moonshot | kimi-k2.5 | ~$0.30 | ~$1.20 | Validation, review |
 | Moonshot | kimi-k2.6 | ~$0.50 | ~$2.00 | Planning |
 
-> 💰 **Real savings:** 65% of work is done at T0 (local, $0). Only escalates to cloud when the problem requires it.
+> 💰 **Real savings:** Most work is done at T0 (local, $0). Only escalates to cloud when the problem requires it.
 
 ---
 
 ## Repository Ecosystem
 
-COALA-SwarmOps is the **cognitive head** of a 4-repository ecosystem:
+COALA SwarmOps connects to your existing code repositories through standard Git workflows. It can orchestrate work across multiple projects — whether you have a single monorepo or a distributed microservices architecture.
 
-```mermaid
-flowchart LR
-    SWARM["🐨 COALA-SwarmOps<br/>Cognitive orchestration"] --> TANCERCA["🛒 tancerca<br/>Ecommerce"]
-    SWARM --> FUENTE["📚 fuente-de-datos<br/>RAG / Catalogs"]
-    SWARM --> BODEGA["📦 imp.bodegamk<br/>Inventory / POS"]
-    SWARM --> ENJAMBRE["🧪 enjambre<br/>Experimental lab"]
-
-    TANCERCA --> FUENTE
-    FUENTE --> BODEGA
-```
+The platform is designed to integrate with:
+- **Your existing Git repositories** — no migration needed
+- **Standard CI/CD pipelines** — GitHub Actions, GitLab CI, etc.
+- **Your local development environment** — VS Code + Ollama
 
 ---
 
@@ -280,7 +274,7 @@ flowchart LR
 | 💸 "ChatGPT charges me $20/mo and I only use 10%" | Pay per **feature**, not subscription. Real cost: $0.05-$8.00 |
 | 🤖 "AI gave me code that doesn't work" | **3 validation gates** before it reaches production |
 | 🏗️ "I don't know how to organize a big project" | **9-phase SDD pipeline** guiding from idea to commit |
-| 🔄 "I have to copy-paste between chats" | **14+ specialized agents** passing context automatically |
+| 🔄 "I have to copy-paste between chats" | **Multiple specialized agents** passing context automatically |
 | 💻 "I only have Windows, I don't know Linux" | Natively designed for **Windows + PowerShell**, with Linux/macOS support |
 
 ---
@@ -293,7 +287,7 @@ flowchart LR
 | [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md) | Step-by-step manual |
 | [`docs/COST_TRACKER.md`](docs/COST_TRACKER.md) | Cost traceability per feature |
 | [`docs/PRICES.md`](docs/PRICES.md) | Real API prices (updated monthly) |
-| [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) | 4-repo ecosystem map |
+| [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) | Repository ecosystem concepts |
 | [`docs/architecture/ARCHITECTURE.md`](docs/architecture/ARCHITECTURE.md) | Architecture decisions |
 | [`docs/terminology/TERMINOLOGY.md`](docs/terminology/TERMINOLOGY.md) | Term glossary |
 | [`docs/HERMES_NEXUS_ROADMAP.md`](docs/HERMES_NEXUS_ROADMAP.md) | Roadmap to advanced cognitive layers |
@@ -314,22 +308,24 @@ flowchart LR
 
 ## Version comparison
 
-| Capability | v6.0 (Free) | v6.2 (Production) | v6.7 (Enterprise) |
-|---|---|---|---|
-| **Workers** | 14 | 24+ | 21 |
-| **Pipeline** | Basic | 3 validation gates | Full gates + CoALA loop |
-| **Memory** | ❌ | ✅ CoALA | ✅ CoALA + Episodic |
-| **Anti-duplicate** | ❌ | ✅ | ✅ |
-| **Circuit breaker** | ❌ | ❌ | ✅ |
-| **T0 local agents** | 3 | 3 | 3 + T0.5 Flash |
-| **Quality score** | ~60/100 | ~82/100 | ~92/100 |
-| **Price** | **$0** | **$19.99** one-time | **$299/mo** |
+We offer multiple tiers from free to premium subscriptions. Each tier adds more agents, validation gates, and automation.
 
-> 📊 Source: [`docs/custom_modes/README_VERSIONS.md`](docs/custom_modes/README_VERSIONS.md)
+| Capability | Free (v6.0) | Premium tiers |
+|---|---|---|
+| **Agent team** | Core starter pack | Expanded with specialists |
+| **Pipeline** | Basic SDD | Multi-gate with validation |
+| **Memory** | ❌ | ✅ Advanced contextual memory |
+| **Anti-duplicate** | ❌ | ✅ |
+| **Circuit breaker** | ❌ | ✅ |
+| **Local agents** | Basic set | Enhanced + Flash tier |
+| **Quality** | Good | Excellent |
+| **Price** | **$0** | **From $7.99** |
+
+> 📊 Full details: [`docs/custom_modes/README_VERSIONS.md`](docs/custom_modes/README_VERSIONS.md)
 
 ---
 
-## Why $299/mo for Enterprise?
+## Why subscribe to Enterprise?
 
 Not a made-up number. Backed by **real costs and measurable savings**:
 
@@ -369,11 +365,11 @@ Savings: $550/mo on APIs alone
 
 | Benefit | Estimated value |
 |---|---|
-| Monthly updated v6.7 YAML | $150/mo (equivalent to hiring a prompt engineer) |
+| Monthly updated premium configurations | $150/mo (equivalent to hiring a prompt engineer) |
 | Priority support (response < 4h) | $300/mo |
 | Roadmap voting (you decide what gets built) | — |
 | Production-ready Docker templates | $200/mo (freelance DevOps) |
-| Access to Hermes/GitNexus when ready | $500/mo |
+| Access to advanced cognitive layers when ready | $500/mo |
 | **Total value** | **~$1,150/mo** |
 | **COALA price** | **$299/mo** |
 
@@ -386,17 +382,15 @@ Savings: $550/mo on APIs alone
 ```mermaid
 timeline
     title COALA SwarmOps Roadmap
-    2026 Q2 : v6.7 Enterprise launch
-              : Hermes active research
-              : GitNexus active research
-    2026 Q3 : Hermes v1.0 (real-time cognitive orchestration)
-              : GitNexus v1.0 (graph knowledge layer)
-    2026 Q4 : Distributed swarm execution
-              : Multi-node orchestration
-    2027 Q1 : COALA Nexus Enterprise
-              : Advanced semantic planning
-    2027 Q2 : Worker marketplace
-              : Kubernetes-native deployment
+    Near Term : Continuous v6.x improvements
+                : Community contributions
+                : Active research on cognitive orchestration
+    Mid Term  : Hermes v1.0 (real-time cognitive orchestration)
+                : GitNexus v1.0 (graph knowledge layer)
+                : Distributed swarm execution
+    Long Term : Advanced semantic planning
+                : Worker marketplace
+                : Kubernetes-native deployment
 ```
 
 ### Hermes — The missing brain
@@ -415,7 +409,7 @@ GitNexus is a **graph knowledge layer** that:
 - 🔗 Maps dependencies across all your repositories
 - 📊 Calculates impact of a change before it's made
 - 🎯 Sends tasks to the worker with domain over the target code
-- 🛡️ Prevents a change in `tancerca` from breaking `imp.bodegamk`
+- 🛡️ Prevents changes in one repository from breaking another
 
 > 📖 Detailed architecture at [`docs/HERMES_NEXUS_ROADMAP.md`](docs/HERMES_NEXUS_ROADMAP.md)
 
@@ -426,18 +420,18 @@ GitNexus is a **graph knowledge layer** that:
 ```mermaid
 flowchart TB
     subgraph FREE["🆓 Free forever"]
-        F1["v6.0 Starter<br/>14 workers<br/>Basic pipeline"]
+        F1["v6.0 Starter<br/>Core agents<br/>Basic pipeline"]
     end
 
     subgraph LOWCOST["💰 One-time, yours forever"]
-        L1["v6.1 Starter+ $7.99<br/>Anti-duplicate + Human gate"]
-        L2["v6.2 Production $19.99<br/>3 gates + CoALA memory + POS template"]
-        L3["v6.3 Docker&Ecom $14.99<br/>CoALA loop + Ecommerce template"]
+        L1["v6.1 Starter+<br/>Anti-duplicate + Human gate"]
+        L2["v6.2 Production<br/>3 gates + Memory + POS template"]
+        L3["v6.3 Docker&Ecom<br/>Loop + Ecommerce template"]
     end
 
     subgraph SUBS["📅 Monthly subscription"]
-        S1["v6.5 Pro $49/mo<br/>T0 local agents + updates"]
-        S2["v6.7 Enterprise $299/mo<br/>Full swarm + Hermes preview + support"]
+        S1["v6.5 Pro<br/>Local agents + updates"]
+        S2["v6.7 Enterprise<br/>Full swarm + Preview + support"]
     end
 
     FREE --> LOWCOST --> SUBS
@@ -459,21 +453,21 @@ flowchart TB
 
 ## Real-world use cases
 
-### TanCerca.cl — Real ecommerce
+### Ecommerce platform with intelligent catalog
 
-The COALA ecosystem was born operating a real store. The swarm handles:
-- Product catalog with RAG
+The COALA ecosystem was born operating real production systems. The swarm handles:
+- Product catalog with RAG (Retrieval Augmented Generation)
 - Inventory synced with POS
 - Automated Docker deployment
-- Multi-tenant for future stores
+- Multi-tenant architecture for future expansion
 
-### Bodega MK — POS + Inventory system
+### Retail POS + Inventory system
 
 A complete point-of-sale and inventory system proving the swarm is not theory:
-- Real-time sales
+- Real-time sales tracking
 - Stock control
 - Automatic reports
-- docker-compose deployment
+- Docker Compose deployment
 
 ---
 
@@ -484,7 +478,7 @@ A complete point-of-sale and inventory system proving the swarm is not theory:
 | Try for free now | Follow the [quick install](#step-1-install-ollama-tier-0-local--0) above |
 | Compare versions | Read [`docs/custom_modes/README_VERSIONS.md`](docs/custom_modes/README_VERSIONS.md) |
 | Understand the architecture | Read [`docs/architecture/ARCHITECTURE.md`](docs/architecture/ARCHITECTURE.md) |
-| See the full ecosystem | Read [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) |
+| See the ecosystem concepts | Read [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) |
 | Contribute to the project | Read [`CONTRIBUTING.md`](CONTRIBUTING.md) |
 | Report a bug | Use [GitHub Issues](../../issues/new/choose) |
 | Support the project | [GitHub Sponsors](https://github.com/sponsors/Aquilesnake) |

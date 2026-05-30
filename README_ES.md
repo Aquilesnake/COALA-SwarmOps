@@ -21,7 +21,7 @@
 
 ## La idea en una oración
 
-> **COALA SwarmOps es como tener un equipo de 14+ "expertos virtuales" dentro de tu computadora, cada uno especializado en algo distinto, que trabajan juntos para construir software, arreglar errores y automatizar tareas.**
+> **COALA SwarmOps es como tener un equipo de "expertos virtuales" especializados dentro de tu computadora, cada uno con una habilidad distinta, que trabajan juntos para construir software, arreglar errores y automatizar tareas.**
 
 ---
 
@@ -35,7 +35,7 @@ Imagina que quieres abrir un restaurante. Normalmente necesitarías contratar:
 | 🍳 Cocineros de línea | **Ejecutores (T0)** | Cocinan los platos. Son rápidos, locales, gratuitos |
 | 👁️ Supervisor de calidad | **Validador (T2)** | Revisa que el plato esté bien antes de servirlo |
 | 🔍 Inspector de higiene | **Auditor de Seguridad** | Se asegura de que todo sea seguro |
-| 📋 Jefe de sala | **MicroManager** | Coordina quién hace qué y cuándo |
+| 📋 Jefe de sala | **Coordinador** | Coordina quién hace qué y cuándo |
 
 **COALA hace exactamente eso, pero para software.**
 
@@ -66,7 +66,7 @@ flowchart TB
     end
 
     subgraph Paso3["3️⃣ El swarm trabaja solo"]
-        P3A[14 agentes colaboran] --> P3B[Recibes código probado]
+        P3A[Múltiples agentes colaboran] --> P3B[Recibes código probado]
     end
 
     Paso1 --> Paso2 --> Paso3
@@ -83,7 +83,7 @@ flowchart TB
 | **Feature compleja** (ej: nuevo módulo) | ~$2.00 - $8.00 | Cuando el equipo local no puede solo |
 | **Comparación:** Contratar un desarrollador | $1,500 - $5,000/mes | — |
 
-> 💡 **El 65% del trabajo se resuelve gratis** con los agentes locales (T0).
+> 💡 **La mayoría del trabajo se resuelve gratis** con los agentes locales (T0).
 
 ---
 
@@ -120,9 +120,9 @@ curl -fsSL https://ollama.com/install.sh | sh
 ### Paso 2: Descargar modelos locales (gratuitos)
 
 ```bash
-ollama pull ejecutor-qwen2.5:latest   # Ejecutor de comandos
-ollama pull qwen3.5:9b-opt            # Validador rápido
-ollama pull granite3.2:8b             # Explorador de contexto
+ollama pull qwen2.5:latest   # Ejecutor local
+ollama pull qwen2.5:7b       # Validador rápido
+ollama pull granite3.2:8b    # Explorador de contexto
 ```
 
 ### Paso 3: Instalar RooCode en VS Code
@@ -156,9 +156,9 @@ cp docs/custom_modes/custom_modes_v6.0.yaml ~/.vscode/extensions/roo-code/.roo/c
 ```mermaid
 flowchart TB
     subgraph TIER0["⚡ TIER 0 — Local ($0)"]
-        T0A["ejecutor-qwen2.5<br/>Comandos rápidos"]
-        T0B["qwen3.5:9b-opt<br/>Validación"]
-        T0C["granite3.2:8b<br/>Exploración"]
+        T0A["Ejecutor Local<br/>Comandos rápidos"]
+        T0B["Validador Rápido<br/>Chequeos rápidos"]
+        T0C["Explorador de Contexto<br/>Búsqueda de código"]
     end
 
     subgraph TIER1["🔹 TIER 1 — Cloud Económico (~$0.14/1M tok)"]
@@ -172,13 +172,13 @@ flowchart TB
 
     subgraph TIER3["🔶 TIER 3 — Estratégico (~$0.50/1M tok)"]
         T3A["kimi-k2.6<br/>Planificación"]
-        T3B["strategic-planner<br/>Arquitectura"]
+        T3B["Planificador Estratégico<br/>Arquitectura"]
     end
 
-    subgraph GATES["🛡️ Validation Gates"]
-        GATE1["spec-validator<br/>Antes de código"]
-        GATE2["test-engineer<br/>Tests antes de merge"]
-        GATE3["code-reviewer<br/>Revisión final"]
+    subgraph GATES["🛡️ Gates de Validación"]
+        GATE1["Gate 1<br/>Antes de código"]
+        GATE2["Gate 2<br/>Tests antes de merge"]
+        GATE3["Gate 3<br/>Revisión final"]
     end
 
     USER["🧑 Usuario"] --> REQUEST["/enrich_us 'feature'"]
@@ -202,17 +202,17 @@ flowchart TB
 
 | Componente | Responsabilidad | Tier |
 |---|---|---|
-| **us-enricher** | Transforma historias de usuario vagas en especificaciones exhaustivas | T2 |
-| **fastforward-writer** | Genera los 4 documentos del artifact folder | T3 |
-| **micromanager** | Ejecuta el execution_plan.yaml fase por fase | T3 |
-| **spec-validator** | Valida que el spec esté completo antes de código | T2 |
-| **test-engineer** | Valida que los tests cumplen TDD antes de implementación | T2 |
-| **code-reviewer** | Revisa calidad, seguridad y patrones antes de merge | T2 |
-| **security-auditor** | Auditoría de seguridad antes de deploy | T2 |
-| **evidence-checker** | Verifica que toda afirmación técnica tiene evidencia real | T2 |
-| **ejecutor-qwen** (T0) | Ejecutor de comandos cmd.exe atómicos | T0 |
-| **qwen-fast-checker** (T0) | Validador rápido de sintaxis y linting | T0 |
-| **granite-context-scout** (T0) | Búsqueda y exploración local del codebase | T0 |
+| **Analista de Requerimientos** | Transforma historias de usuario vagas en especificaciones detalladas | T2 |
+| **Escritor de Especificaciones** | Genera documentos de diseño técnico y desglose de tareas | T3 |
+| **Coordinador de Tareas** | Gestiona fases de ejecución y delega a agentes apropiados | T3 |
+| **Validador de Calidad** | Valida que las especificaciones estén completas antes de implementar | T2 |
+| **Validador de Tests** | Asegura que los tests cumplan estándares antes del merge | T2 |
+| **Revisor de Código** | Revisa calidad, seguridad y patrones antes de producción | T2 |
+| **Auditor de Seguridad** | Realiza auditoría de seguridad antes del deploy | T2 |
+| **Verificador de Evidencia** | Verifica que cada afirmación técnica tenga evidencia | T2 |
+| **Ejecutor Local** (T0) | Ejecuta comandos atómicos en tu máquina local | T0 |
+| **Revisor de Sintaxis** (T0) | Validación rápida de sintaxis y linting | T0 |
+| **Explorador de Código** (T0) | Búsqueda y exploración local del codebase | T0 |
 
 ---
 
@@ -220,15 +220,15 @@ flowchart TB
 
 ```mermaid
 flowchart LR
-    A["📝 FASE 0<br/>Enrich US"] --> B["📐 FASE 1<br/>Plan"]
-    B --> C["⚡ FASE 2<br/>FastForward"]
-    C --> D["🛡️ FASE 3<br/>Validate Spec"]
-    D --> E["💻 FASE 4<br/>Code"]
-    E --> F["🔍 FASE 5<br/>Review Code"]
-    F --> G["🧪 FASE 6<br/>Test"]
-    G --> H["🔐 FASE 7<br/>Security Audit"]
-    H --> I["🏁 FASE 8<br/>Commit + PR"]
-    I --> J["🧠 FASE 9<br/>Context Guardian"]
+    A["📝 FASE 0<br/>Enriquecer Requerimientos"] --> B["📐 FASE 1<br/>Planificar"]
+    B --> C["⚡ FASE 2<br/>Especificar"]
+    C --> D["🛡️ FASE 3<br/>Validar Spec"]
+    D --> E["💻 FASE 4<br/>Implementar"]
+    E --> F["🔍 FASE 5<br/>Revisar Código"]
+    F --> G["🧪 FASE 6<br/>Testear"]
+    G --> H["🔐 FASE 7<br/>Auditar Seguridad"]
+    H --> I["🏁 FASE 8<br/>Entregar"]
+    I --> J["🧠 FASE 9<br/>Capturar Conocimiento"]
 ```
 
 ---
@@ -239,8 +239,8 @@ flowchart LR
 
 | Modelo | VRAM | Uso |
 |---|---|---|
-| `ejecutor-qwen2.5:latest` | ~12 GB | Ejecución de comandos |
-| `qwen3.5:9b-opt` | ~6 GB | Validación rápida |
+| `qwen2.5:latest` | ~12 GB | Ejecución de comandos |
+| `qwen2.5:7b` | ~6 GB | Validación rápida |
 | `granite3.2:8b` | ~6 GB | Exploración de código |
 
 ### Cloud (API Directa)
@@ -252,24 +252,18 @@ flowchart LR
 | Moonshot | kimi-k2.5 | ~$0.30 | ~$1.20 | Validación, review |
 | Moonshot | kimi-k2.6 | ~$0.50 | ~$2.00 | Planificación |
 
-> 💰 **Ahorro real:** El 65% del trabajo se hace en T0 (local, $0). Solo se escala a cloud cuando el problema lo requiere.
+> 💰 **Ahorro real:** La mayoría del trabajo se hace en T0 (local, $0). Solo se escala a cloud cuando el problema lo requiere.
 
 ---
 
 ## Ecosistema de Repositorios
 
-COALA-SwarmOps es la **cabeza cognitiva** de un ecosistema de 4 repositorios:
+COALA SwarmOps se conecta a tus repositorios de código existentes a través de flujos de trabajo Git estándar. Puede orquestar trabajo en múltiples proyectos — ya sea que tengas un monorepo o una arquitectura de microservicios distribuidos.
 
-```mermaid
-flowchart LR
-    SWARM["🐨 COALA-SwarmOps<br/>Orquestación cognitiva"] --> TANCERCA["🛒 tancerca<br/>Ecommerce"]
-    SWARM --> FUENTE["📚 fuente-de-datos<br/>RAG / Catálogos"]
-    SWARM --> BODEGA["📦 imp.bodegamk<br/>Inventario / POS"]
-    SWARM --> ENJAMBRE["🧪 enjambre<br/>Laboratorio experimental"]
-
-    TANCERCA --> FUENTE
-    FUENTE --> BODEGA
-```
+La plataforma está diseñada para integrarse con:
+- **Tus repositorios Git existentes** — sin migración necesaria
+- **Tus pipelines CI/CD estándar** — GitHub Actions, GitLab CI, etc.
+- **Tu entorno de desarrollo local** — VS Code + Ollama
 
 ---
 
@@ -279,8 +273,8 @@ flowchart LR
 |---|---|
 | 💸 "ChatGPT me cobra $20/mes y solo uso el 10%" | Pagas por **feature**, no por suscripción. Costo real: $0.05-$8.00 |
 | 🤖 "La IA me dio código que no funciona" | **3 gates de validación** antes de que llegue a producción |
-| 🏗️ "No sé cómo organizar un proyecto grande" | **Pipeline SDD** de 9 fases que guía desde la idea hasta el commit |
-| 🔄 "Tengo que estar copiando y pegando entre chats" | **14+ agentes especializados** que se pasan el contexto automáticamente |
+| 🏗️ "No sé cómo organizar un proyecto grande" | **Pipeline SDD de 9 fases** que guía desde la idea hasta el commit |
+| 🔄 "Tengo que estar copiando y pegando entre chats" | **Múltiples agentes especializados** que se pasan el contexto automáticamente |
 | 💻 "Solo tengo Windows, no sé usar Linux" | Diseñado nativamente para **Windows + PowerShell**, con soporte Linux/macOS |
 
 ---
@@ -293,7 +287,7 @@ flowchart LR
 | [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md) | Manual paso a paso |
 | [`docs/COST_TRACKER.md`](docs/COST_TRACKER.md) | Trazabilidad de costos por feature |
 | [`docs/PRICES.md`](docs/PRICES.md) | Precios reales de APIs (actualizado mensual) |
-| [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) | Mapa del ecosistema de 4 repos |
+| [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) | Conceptos del ecosistema de repos |
 | [`docs/architecture/ARCHITECTURE.md`](docs/architecture/ARCHITECTURE.md) | Decisiones de arquitectura |
 | [`docs/terminology/TERMINOLOGY.md`](docs/terminology/TERMINOLOGY.md) | Glosario de términos |
 | [`docs/HERMES_NEXUS_ROADMAP.md`](docs/HERMES_NEXUS_ROADMAP.md) | Ruta hacia capas cognitivas avanzadas |
@@ -314,22 +308,24 @@ flowchart LR
 
 ## Comparativa de versiones
 
-| Capacidad | v6.0 (Free) | v6.2 (Production) | v6.7 (Enterprise) |
-|---|---|---|---|
-| **Workers** | 14 | 24+ | 21 |
-| **Pipeline** | Básico | 3 validation gates | Full gates + CoALA loop |
-| **Memoria** | ❌ | ✅ CoALA | ✅ CoALA + Episodic |
-| **Anti-duplicate** | ❌ | ✅ | ✅ |
-| **Circuit breaker** | ❌ | ❌ | ✅ |
-| **T0 local agents** | 3 | 3 | 3 + T0.5 Flash |
-| **Score de calidad** | ~60/100 | ~82/100 | ~92/100 |
-| **Precio** | **$0** | **$19.99** una vez | **$299/mes** |
+Ofrecemos múltiples tiers desde gratuito hasta suscripciones premium. Cada tier agrega más agentes, gates de validación y automatización.
 
-> 📊 Fuente: [`docs/custom_modes/README_VERSIONS.md`](docs/custom_modes/README_VERSIONS.md)
+| Capacidad | Gratis (v6.0) | Tiers Premium |
+|---|---|---|
+| **Equipo de agentes** | Pack inicial core | Expandido con especialistas |
+| **Pipeline** | SDD básico | Multi-gate con validación |
+| **Memoria** | ❌ | ✅ Memoria contextual avanzada |
+| **Anti-duplicado** | ❌ | ✅ |
+| **Circuit breaker** | ❌ | ✅ |
+| **Agentes locales** | Set básico | Mejorado + tier Flash |
+| **Calidad** | Buena | Excelente |
+| **Precio** | **$0** | **Desde $7.99** |
+
+> 📊 Detalles completos: [`docs/custom_modes/README_VERSIONS.md`](docs/custom_modes/README_VERSIONS.md)
 
 ---
 
-## ¿Por qué $299/mes para Enterprise?
+## ¿Por qué suscribirse a Enterprise?
 
 No es un número inventado. Se respalda en **costos reales y ahorros medibles**:
 
@@ -369,11 +365,11 @@ Ahorro: $550/mes solo en APIs
 
 | Beneficio | Valor estimado |
 |---|---|
-| YAML v6.7 actualizado mensualmente | $150/mes (equivalente a contratar prompt engineer) |
+| Configuraciones premium actualizadas mensualmente | $150/mes (equivalente a contratar prompt engineer) |
 | Priority support (respuesta < 4h) | $300/mes |
 | Voto en roadmap (decides qué se construye) | — |
 | Templates Docker listos para producción | $200/mes (DevOps freelance) |
-| Acceso a Hermes/GitNexus cuando estén listos | $500/mes |
+| Acceso a capas cognitivas avanzadas cuando estén listas | $500/mes |
 | **Valor total** | **~$1,150/mes** |
 | **Precio COALA** | **$299/mes** |
 
@@ -386,22 +382,20 @@ Ahorro: $550/mes solo en APIs
 ```mermaid
 timeline
     title Roadmap COALA SwarmOps
-    2026 Q2 : v6.7 Enterprise lanzamiento
-              : Hermes investigación activa
-              : GitNexus investigación activa
-    2026 Q3 : Hermes v1.0 (orquestación cognitiva en tiempo real)
-              : GitNexus v1.0 (graph knowledge layer)
-    2026 Q4 : Distributed swarm execution
-              : Multi-node orchestration
-    2027 Q1 : COALA Nexus Enterprise
-              : Advanced semantic planning
-    2027 Q2 : Marketplace de workers
-              : Kubernetes-native deployment
+    Corto Plazo : Mejoras continuas v6.x
+                  : Contribuciones de la comunidad
+                  : Investigación activa en orquestación cognitiva
+    Medio Plazo  : Hermes v1.0 (orquestación cognitiva en tiempo real)
+                   : GitNexus v1.0 (capa de conocimiento en grafo)
+                   : Ejecución distribuida del swarm
+    Largo Plazo  : Planificación semántica avanzada
+                   : Marketplace de agentes
+                   : Despliegue nativo en Kubernetes
 ```
 
 ### Hermes — El cerebro que falta
 
-Hermes no es un "planner más". Es un **orquestador cognitivo** que:
+Hermes no es "un planner más". Es un **orquestador cognitivo** que:
 
 - 🧠 Detecta cuando un agente está "alucinando" en tiempo real
 - 🔄 Decide dinámicamente qué worker ejecuta qué tarea (sin reglas estáticas)
@@ -414,8 +408,8 @@ GitNexus es una **capa de grafo de conocimiento** que:
 
 - 🔗 Mapea dependencias entre todos tus repositorios
 - 📊 Calcula impacto de un cambio antes de que se haga
-- 🎯 Envia tareas al worker con dominio sobre el código objetivo
-- 🛡️ Evita que un cambio en `tancerca` rompa `imp.bodegamk`
+- 🎯 Envía tareas al worker con dominio sobre el código objetivo
+- 🛡️ Previene que cambios en un repositorio rompan otro
 
 > 📖 Arquitectura detallada en [`docs/HERMES_NEXUS_ROADMAP.md`](docs/HERMES_NEXUS_ROADMAP.md)
 
@@ -426,18 +420,18 @@ GitNexus es una **capa de grafo de conocimiento** que:
 ```mermaid
 flowchart TB
     subgraph FREE["🆓 Gratis para siempre"]
-        F1["v6.0 Starter<br/>14 workers<br/>Pipeline básico"]
+        F1["v6.0 Starter<br/>Agentes core<br/>Pipeline básico"]
     end
 
     subgraph LOWCOST["💰 Una vez, tuyo para siempre"]
-        L1["v6.1 Starter+ $7.99<br/>Anti-duplicate + Human gate"]
-        L2["v6.2 Production $19.99<br/>3 gates + CoALA memory + POS template"]
-        L3["v6.3 Docker&Ecom $14.99<br/>CoALA loop + Ecommerce template"]
+        L1["v6.1 Starter+<br/>Anti-duplicado + Human gate"]
+        L2["v6.2 Production<br/>3 gates + Memoria + POS template"]
+        L3["v6.3 Docker&Ecom<br/>Loop + Ecommerce template"]
     end
 
     subgraph SUBS["📅 Suscripción mensual"]
-        S1["v6.5 Pro $49/mes<br/>T0 local agents + updates"]
-        S2["v6.7 Enterprise $299/mes<br/>Full swarm + Hermes preview + support"]
+        S1["v6.5 Pro<br/>Agentes locales + updates"]
+        S2["v6.7 Enterprise<br/>Swarm completo + Preview + soporte"]
     end
 
     FREE --> LOWCOST --> SUBS
@@ -459,21 +453,21 @@ flowchart TB
 
 ## Casos de uso reales
 
-### TanCerca.cl — Ecommerce real
+### Plataforma de ecommerce con catálogo inteligente
 
-El ecosistema COALA nació operando una tienda real. El swarm maneja:
-- Catálogo de productos con RAG
+El ecosistema COALA nació operando sistemas productivos reales. El swarm maneja:
+- Catálogo de productos con RAG (Retrieval Augmented Generation)
 - Inventario sincronizado con POS
 - Despliegue Docker automatizado
-- Multi-tenant para futuras tiendas
+- Arquitectura multi-tenant para futura expansión
 
-### Bodega MK — Sistema POS + Inventario
+### Sistema POS + Inventario para retail
 
 Un sistema completo de punto de venta e inventario que demuestra que el swarm no es teoría:
 - Ventas en tiempo real
 - Control de stock
 - Reportes automáticos
-- Despliegue con docker-compose
+- Despliegue con Docker Compose
 
 ---
 
@@ -484,7 +478,7 @@ Un sistema completo de punto de venta e inventario que demuestra que el swarm no
 | Probar gratis ahora | Sigue la [instalación rápida](#paso-1-instalar-ollama-tier-0-local--0) arriba |
 | Comparar versiones | Lee [`docs/custom_modes/README_VERSIONS.md`](docs/custom_modes/README_VERSIONS.md) |
 | Entender la arquitectura | Lee [`docs/architecture/ARCHITECTURE.md`](docs/architecture/ARCHITECTURE.md) |
-| Ver el ecosistema completo | Lee [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) |
+| Ver conceptos del ecosistema | Lee [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) |
 | Contribuir al proyecto | Lee [`CONTRIBUTING.md`](CONTRIBUTING.md) |
 | Reportar un bug | Usa [GitHub Issues](../../issues/new/choose) |
 | Apoyar el proyecto | [GitHub Sponsors](https://github.com/sponsors/Aquilesnake) |
@@ -500,7 +494,7 @@ Un sistema completo de punto de venta e inventario que demuestra que el swarm no
 ---
 
 <p align="center">
-  <strong>🐨 Smarter agents. Lower costs. Better systems.</strong>
+  <strong>🐨 Agentes más inteligentes. Costos más bajos. Mejores sistemas.</strong>
 </p>
 
 [⬆️ Volver al menú](#-a-qué-sección-quiero-ir)
