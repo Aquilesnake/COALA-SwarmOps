@@ -234,7 +234,7 @@ Si el comando `/enrich_us` no está disponible, verificar que el archivo `custom
 
 ## Próximos Pasos
 
-1. Explorar el ecosistema completo en [ECOSYSTEM_CONTEXT.md](docs/ECOSYSTEM_CONTEXT.md)
-2. Leer el manual de usuario en [USER_GUIDE.md](docs/USER_GUIDE.md)
-3. Revisar la hoja de ruta de Hermes y Nexus en [HERMES_NEXUS_ROADMAP.md](docs/HERMES_NEXUS_ROADMAP.md)
-4. Configurar trazabilidad de costos en [COST_TRACKER.md](docs/COST_TRACKER.md)
+1. Explorar el ecosistema completo en [ECOSYSTEM_CONTEXT.md](ECOSYSTEM_CONTEXT.md)
+2. Leer el manual de usuario en [USER_GUIDE.md](USER_GUIDE.md)
+3. Revisar la hoja de ruta de Hermes y Nexus en [HERMES_NEXUS_ROADMAP.md](HERMES_NEXUS_ROADMAP.md)
+4. Configurar trazabilidad de costos en [COST_TRACKER.md](COST_TRACKER.md)
