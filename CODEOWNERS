@@ -1,0 +1,25 @@
+# ================================================================
+# COALA SwarmOps — Code Owners
+# ================================================================
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+#
+# Order is important. The last matching pattern takes precedence.
+
+# Global — Cristian Tapia (creator & maintainer)
+* @Aquilesnake
+
+# Documentation — anyone can contribute, maintainer reviews
+/docs/ @Aquilesnake
+*.md @Aquilesnake
+
+# Core orchestration — restricted to maintainer
+/core/ @Aquilesnake
+
+# Security — restricted to maintainer
+/security/ @Aquilesnake
+SECURITY.md @Aquilesnake
+
+# Infrastructure (Docker, CI/CD) — restricted to maintainer
+/infrastructure/ @Aquilesnake
+/docker/ @Aquilesnake
+.github/ @Aquilesnake

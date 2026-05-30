@@ -1,0 +1,19 @@
+# ================================================================
+# COALA SwarmOps — GitHub Sponsors Configuration
+# ================================================================
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button
+
+github: [Aquilesnake]
+
+# Future options (uncomment when ready):
+# patreon: coala_swarmops
+# open_collective: coala-swarmops
+# ko_fi: coalaswarmops
+# buy_me_a_coffee: coalaswarmops
+# custom: ['https://tancerca.cl/sponsor']
+
+# Community notes:
+# - Every sponsor helps keep the swarm evolving and free
+# - $5/mo: Name in CONTRIBUTORS.md
+# - $25/mo: Early access to COALA Pro features
+# - $100/mo: Priority support + roadmap voting

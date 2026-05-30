@@ -1,0 +1,83 @@
+# ================================================================
+# COALA SwarmOps — .gitignore
+# ================================================================
+
+# --- Node.js / TypeScript ---
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Environment & Secrets ---
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+apikey
+credentials.json
+secrets/
+
+# --- IDE & Editors ---
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+docker-compose.override.yml
+*.tar
+docker/data/
+
+# --- Ollama / Local Models ---
+ollama/
+*.gguf
+*.bin
+models/
+!models/*.txt
+!models/*.md
+
+# --- OS ---
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Logs ---
+*.log
+logs/
+npm-debug.log*
+
+# --- Test Artifacts ---
+coverage/
+.nyc_output/
+*.lcov
+
+# --- Temporary files ---
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# --- Python (future providers) ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# --- Terraform / Infrastructure ---
+*.tfstate
+*.tfstate.backup
+.terraform/
+terraform.tfvars
+
+# --- Archive ---
+*.zip
+*.tar.gz
+*.rar

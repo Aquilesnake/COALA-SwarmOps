@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/Aquilesnake/COALA-SwarmOps/discussions
+    about: Ask questions, discuss architecture, or propose ideas before opening an issue.
+  
+  - name: 📖 Documentation
+    url: https://github.com/Aquilesnake/COALA-SwarmOps/tree/main/docs
+    about: Read the docs before reporting — FOUNDATION.md, PHILOSOPHY.md, STRATEGY.md, INSTALL.md.
+  
+  - name: 🔐 Security Vulnerability
+    url: https://github.com/Aquilesnake/COALA-SwarmOps/security/policy
+    about: Report a security vulnerability privately. Do NOT open a public issue.

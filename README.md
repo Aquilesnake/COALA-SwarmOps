@@ -186,13 +186,52 @@ COALA can analyze and improve parts of its own orchestration logic through contr
 
 ---
 
-## Installation
+## Documentation
 
-Coming soon.
+| Documento | Descripción |
+|-----------|-------------|
+| [`docs/INSTALL.md`](docs/INSTALL.md) | Guía de instalación rápida (Windows, Linux, macOS) |
+| [`docs/USER_GUIDE.md`](docs/USER_GUIDE.md) | Manual paso a paso para usar el servicio |
+| [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) | Mapa de repositorios: tancerca, fuente-de-datos, imp.bodegamk |
+| [`docs/COST_TRACKER.md`](docs/COST_TRACKER.md) | Mecanismo de trazabilidad de costos por feature |
+| [`docs/PRICES.md`](docs/PRICES.md) | Fuente de verdad de precios de APIs (actualizar cada 30 días) |
+| [`docs/HERMES_NEXUS_ROADMAP.md`](docs/HERMES_NEXUS_ROADMAP.md) | Hoja de ruta de Hermes + GitNexus + Nexus |
+| [`docs/BUSINESS_STRATEGY.md`](docs/BUSINESS_STRATEGY.md) | Estrategia de posicionamiento top 10 mundial |
+| [`docs/architecture/`](docs/architecture/) | Decisiones de arquitectura |
+| [`docs/terminology/`](docs/terminology/) | Glosario de términos del swarm |
 
-Docker-based deployment and Windows-native installation support are currently under active development.
+## Ecosistema
 
----
+COALA-SwarmOps es la cabeza cognitiva de un ecosistema de 4 repositorios:
+
+```
+COALA-SwarmOps → tancerca (ecommerce) → fuente-de-datos (RAG) → imp.bodegamk (logística)
+```
+
+Ver [`docs/ECOSYSTEM_CONTEXT.md`](docs/ECOSYSTEM_CONTEXT.md) para el mapa completo.
+
+## Instalación Rápida
+
+```bash
+# 1. Instalar Ollama y modelos T0 locales
+ollama pull ejecutor-qwen2.5:latest
+ollama pull qwen3.5:9b-opt
+ollama pull granite3.2:8b
+
+# 2. Copiar custom_modes.yaml a RooCode
+# Windows:
+copy docs\custom_modes\custom_modes_v6.7.yaml %USERPROFILE%\.vscode\extensions\roo-code\.roo\custom_modes.yaml
+# Linux / macOS:
+cp docs/custom_modes/custom_modes_v6.7.yaml ~/.vscode/extensions/roo-code/.roo/custom_modes.yaml
+
+# 3. Configurar API key (DeepSeek directo o Moonshot directo)
+# Ver docs/INSTALL.md para instrucciones detalladas
+
+# 4. Tu primera feature:
+/enrich_us "Como usuario quiero filtrar productos por precio"
+```
+
+Guía completa en [`docs/INSTALL.md`](docs/INSTALL.md).
 
 ## Contributing
 

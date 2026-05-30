@@ -1,0 +1,11 @@
+FROM qwen2.5-coder:32b
+
+# Calibración de Hardware (12GB VRAM RTX 3080 Ti + 90GB RAM)
+PARAMETER num_gpu 38
+PARAMETER num_thread 8
+PARAMETER num_ctx 16384
+
+# Rigidez matemática (Cero creatividad para evitar romper el flujo de herramientas)
+PARAMETER temperature 0.0
+PARAMETER top_p 0.01
+PARAMETER frequency_penalty 0.1
